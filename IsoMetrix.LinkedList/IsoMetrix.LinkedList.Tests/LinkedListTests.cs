@@ -4,13 +4,8 @@ namespace IsoMetrix.LinkedList.Tests;
 
 public class LinkedListTests
 {
-    private readonly CustomLinkedList<string> _linkedList;
-    
-    public LinkedListTests()
-    {
-        _linkedList = new CustomLinkedList<string>();
-    }
-    
+    private readonly CustomLinkedList<string> _linkedList = new();
+
     [Fact]
     public void GivenANewNodeAndEmptyList_InsertFirstAddsToLinkedListInFirstLastSlot()
     {
