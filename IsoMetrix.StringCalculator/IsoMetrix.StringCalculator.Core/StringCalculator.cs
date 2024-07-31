@@ -14,12 +14,12 @@ public class StringCalculator(IDelimiterHandler delimiterHandler, IEnumerable<IV
     /// <returns>The sum of the numbers in the string, or 0 if the string is empty or contains only delimiters.</returns>
     public int Add(string numbers)
     {
-        if (string.IsNullOrWhiteSpace(numbers))
+        var delimiters = delimiterHandler.ExtractDelimiters(numbers, out var extractedNumbers);
+        if (string.IsNullOrWhiteSpace(extractedNumbers))
         {
             return 0;
         }
 
-        var delimiters = delimiterHandler.ExtractDelimiters(numbers, out var extractedNumbers);
         var numberArray = extractedNumbers
             .Split(delimiters, StringSplitOptions.None)
             .Select(int.Parse)
