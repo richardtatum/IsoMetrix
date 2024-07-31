@@ -118,4 +118,31 @@ public class StringCalculatorTests
         var result = StringCalculator.Add(input);
         Assert.Equal(expected, result);
     }
+
+    [Theory]
+    [InlineData(6, "[***]", "1***2***3")]
+    [InlineData(6, "[abcd]", "1abcd2abcd3")]
+    public void GivenAMultiCharacterCustomDelimiterAndAnyAmountOfNumbersSeparatedByIt_AddReturnsTheInputsSummedAsInt(
+        int expected, string customDelimiter, string input)
+    {
+        var inputWithDelimiter = $"//{customDelimiter}\n{input}";
+        var result = StringCalculator.Add(inputWithDelimiter);
+        
+        Assert.Equal(expected, result);
+    }
+
+    [Theory]
+    [InlineData(6, "[:][%]", "1:2%3")]
+    [InlineData(6, "[abcd][***]", "1abcd2***3")]
+    public void
+        GivenMultipleMultiCharacterCustomDelimiterAndAnyAmountOfNumbersSeparatedByThem_AddReturnsTheInputsSummedAsInt(
+            int expected, string customDelimiters, string input)
+    {
+        var inputWithDelimiter = $"//{customDelimiters}\n{input}";
+        var result = StringCalculator.Add(inputWithDelimiter);
+        
+        Assert.Equal(expected, result);
+    }
+    
+    
 }

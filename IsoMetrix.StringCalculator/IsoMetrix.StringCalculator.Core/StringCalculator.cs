@@ -13,12 +13,12 @@ public static class StringCalculator
         var delimiters = BaseDelimiters;
 
         // TODO: Move this to a delimiter handler
-        var (extractedDelimiter, extractedNumbers) = ExtractCustomDelimiter(numbers);
-        if (extractedDelimiter is not null)
+        var (extractedDelimiters, extractedNumbers) = ExtractCustomDelimiter(numbers);
+        if (extractedDelimiters.Any())
         {
             numbers = extractedNumbers;
             delimiters = delimiters
-                .Append(extractedDelimiter)
+                .Union(extractedDelimiters)
                 .ToArray();
         }
 
@@ -45,11 +45,11 @@ public static class StringCalculator
     }
 
     // TODO: Move to DelimiterHandler, attempt to instantiate the static class with a base one, or accept one for custom start and end markers
-    private static (string? delimiter, string numbers) ExtractCustomDelimiter(string numbers)
+    private static (string[] delimiter, string numbers) ExtractCustomDelimiter(string numbers)
     {
         if (!numbers.StartsWith(CustomDelimiterStartMarker))
         {
-            return (null, numbers);
+            return ([], numbers);
         }
 
         var customDelimiterStart = CustomDelimiterStartMarker.Length;
@@ -59,9 +59,15 @@ public static class StringCalculator
         var customDelimiter = numbers.Substring(customDelimiterStart, customDelimiterLength);
         var extractedNumbers = numbers.Substring(customDelimiterEnd + 1);
 
-        return (customDelimiter, extractedNumbers);
+        var customDelimiters = customDelimiter
+            .Replace("[", " ")
+            .Replace("]", " ")
+            .Split(" ", StringSplitOptions.RemoveEmptyEntries);
+
+        return (customDelimiters, extractedNumbers);
     }
 
+    // TODO: A `-` delimiter would cause a lot of problems here!
     private static (bool success, Exception? exception) Validate(IEnumerable<int> numbers)
     {
         var negativeNumbers = numbers.Where(number => number < 0).ToArray();
