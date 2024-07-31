@@ -5,17 +5,24 @@ namespace IsoMetrix.StringCalculator.Tests;
 
 public class StringCalculatorTests
 {
-    [Fact]
-    public void GivenAnEmptyString_AddReturnsZero()
+    private StringCalculator _stringCalculator;
+
+    public StringCalculatorTests()
     {
         var delimiterHandler = new CustomDelimiterHandler();
         var validationHandlers = new IValidationHandler[]
         {
-            new NegativeNumberValidationHandler()
+            new NegativeNumberValidationHandler(),
+            new HighestValueValidationHandler(1000)
         };
 
-        var stringCalculator = new StringCalculator(delimiterHandler, validationHandlers);
-        var result = stringCalculator.Add(string.Empty);
+        _stringCalculator = new StringCalculator(delimiterHandler, validationHandlers);
+    }
+    
+    [Fact]
+    public void GivenAnEmptyString_AddReturnsZero()
+    {
+        var result = _stringCalculator.Add(string.Empty);
         
         Assert.Equal(0, result);
     }
@@ -27,14 +34,7 @@ public class StringCalculatorTests
     [InlineData(4, "4")]
     public void GivenASingleNumber_AddReturnsTheInputAsInt(int expected, string input)
     {
-        var delimiterHandler = new CustomDelimiterHandler();
-        var validationHandlers = new IValidationHandler[]
-        {
-            new NegativeNumberValidationHandler()
-        };
-
-        var stringCalculator = new StringCalculator(delimiterHandler, validationHandlers);
-        var result = stringCalculator.Add(input);
+        var result = _stringCalculator.Add(input);
         
         Assert.Equal(expected, result);
     }
@@ -46,14 +46,7 @@ public class StringCalculatorTests
     [InlineData(9, "4,5")]
     public void GivenTwoNumbersSeparatedByAComma_AddReturnsTheInputsSummedAsInt(int expected, string input)
     {
-        var delimiterHandler = new CustomDelimiterHandler();
-        var validationHandlers = new IValidationHandler[]
-        {
-            new NegativeNumberValidationHandler()
-        };
-
-        var stringCalculator = new StringCalculator(delimiterHandler, validationHandlers);
-        var result = stringCalculator.Add(input);
+        var result = _stringCalculator.Add(input);
         
         Assert.Equal(expected, result);
     }
@@ -66,14 +59,7 @@ public class StringCalculatorTests
     [InlineData(21, "1,2,3,4,5,6")]
     public void GivenAnyAmountOfNumbersSeparatedByAComma_AddReturnsTheInputsSummedAsInt(int expected, string input)
     {
-        var delimiterHandler = new CustomDelimiterHandler();
-        var validationHandlers = new IValidationHandler[]
-        {
-            new NegativeNumberValidationHandler()
-        };
-
-        var stringCalculator = new StringCalculator(delimiterHandler, validationHandlers);
-        var result = stringCalculator.Add(input);
+        var result = _stringCalculator.Add(input);
         
         Assert.Equal(expected, result);
     }
@@ -85,14 +71,7 @@ public class StringCalculatorTests
     [InlineData(21, "1,2\n3,4\n5,6")]
     public void GivenAnyAmountOfNumbersSeparatedByCommaOrNewLine_AddReturnsTheInputsSummedAsInt(int expected, string input)
     {
-        var delimiterHandler = new CustomDelimiterHandler();
-        var validationHandlers = new IValidationHandler[]
-        {
-            new NegativeNumberValidationHandler()
-        };
-
-        var stringCalculator = new StringCalculator(delimiterHandler, validationHandlers);
-        var result = stringCalculator.Add(input);
+        var result = _stringCalculator.Add(input);
         
         Assert.Equal(expected, result);
     }
@@ -105,15 +84,8 @@ public class StringCalculatorTests
     public void GivenACustomDelimiterAndAnyAmountOfNumbersSeparatedByIt_AddReturnsTheInputsSummedAsInt(int expected, string customDelimiter, string input)
     {
         var inputWithDelimiter = $"//{customDelimiter}\n{input}";
-
-        var delimiterHandler = new CustomDelimiterHandler();
-        var validationHandlers = new IValidationHandler[]
-        {
-            new NegativeNumberValidationHandler()
-        };
-
-        var stringCalculator = new StringCalculator(delimiterHandler, validationHandlers);
-        var result = stringCalculator.Add(inputWithDelimiter);
+        
+        var result = _stringCalculator.Add(inputWithDelimiter);
         
         Assert.Equal(expected, result);
     }
@@ -122,15 +94,8 @@ public class StringCalculatorTests
     public void GivenACustomDelimiterAndNoNumbers_AddReturnsZero()
     {
         var input = "//:\n";
-
-        var delimiterHandler = new CustomDelimiterHandler();
-        var validationHandlers = new IValidationHandler[]
-        {
-            new NegativeNumberValidationHandler()
-        };
-
-        var stringCalculator = new StringCalculator(delimiterHandler, validationHandlers);
-        var result = stringCalculator.Add(input);
+        
+        var result = _stringCalculator.Add(input);
         
         Assert.Equal(0, result);
     }
@@ -144,15 +109,8 @@ public class StringCalculatorTests
     {
         var customDelimiter = ":";
         var inputWithDelimiter = $"//{customDelimiter}\n{input}";
-
-        var delimiterHandler = new CustomDelimiterHandler();
-        var validationHandlers = new IValidationHandler[]
-        {
-            new NegativeNumberValidationHandler()
-        };
-
-        var stringCalculator = new StringCalculator(delimiterHandler, validationHandlers);
-        var result = stringCalculator.Add(inputWithDelimiter);
+        
+        var result = _stringCalculator.Add(inputWithDelimiter);
         
         Assert.Equal(expected, result);
     }
@@ -163,14 +121,8 @@ public class StringCalculatorTests
     [InlineData("-1,-2,-3,-4", "//:\n-1,-2\n-3:-4")]
     public void GivenANegativeNumber_AddReturnThrowsAnInvalidOperationExceptionWithTheNegativeNumbers(string exceptionMessageContains, string input)
     {
-        var delimiterHandler = new CustomDelimiterHandler();
-        var validationHandlers = new IValidationHandler[]
-        {
-            new NegativeNumberValidationHandler()
-        };
-
-        var stringCalculator = new StringCalculator(delimiterHandler, validationHandlers);
-        var exception = Assert.Throws<InvalidOperationException>(() => stringCalculator.Add(input));
+        
+        var exception = Assert.Throws<InvalidOperationException>(() => _stringCalculator.Add(input));
         
         Assert.Contains(exceptionMessageContains, exception.Message);
     }
@@ -182,16 +134,7 @@ public class StringCalculatorTests
     [InlineData(0, "1001,1002,1003")]
     public void GivenANumberLargerThan1000_AddSkipsTheNumberAndReturnsTheInputsSummedAsInt(int expected, string input)
     {
-        var delimiterHandler = new CustomDelimiterHandler();
-        var validationHandlers = new IValidationHandler[]
-        {
-            new NegativeNumberValidationHandler(),
-            new HighestValueValidationHandler(1000)
-        };
-
-        var stringCalculator = new StringCalculator(delimiterHandler, validationHandlers);
-        
-        var result = stringCalculator.Add(input);
+        var result = _stringCalculator.Add(input);
         
         Assert.Equal(expected, result);
     }
@@ -203,15 +146,8 @@ public class StringCalculatorTests
         int expected, string customDelimiter, string input)
     {
         var inputWithDelimiter = $"//{customDelimiter}\n{input}";
-        var delimiterHandler = new CustomDelimiterHandler();
-        var validationHandlers = new IValidationHandler[]
-        {
-            new NegativeNumberValidationHandler()
-        };
-
-        var stringCalculator = new StringCalculator(delimiterHandler, validationHandlers);
         
-        var result = stringCalculator.Add(inputWithDelimiter);
+        var result = _stringCalculator.Add(inputWithDelimiter);
         
         Assert.Equal(expected, result);
     }
@@ -224,18 +160,9 @@ public class StringCalculatorTests
             int expected, string customDelimiters, string input)
     {
         var inputWithDelimiter = $"//{customDelimiters}\n{input}";
-        var delimiterHandler = new CustomDelimiterHandler();
-        var validationHandlers = new IValidationHandler[]
-        {
-            new NegativeNumberValidationHandler()
-        };
-
-        var stringCalculator = new StringCalculator(delimiterHandler, validationHandlers);
         
-        var result = stringCalculator.Add(inputWithDelimiter);
+        var result = _stringCalculator.Add(inputWithDelimiter);
         
         Assert.Equal(expected, result);
     }
-    
-    
 }
