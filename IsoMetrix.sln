@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IsoMetrix.StringCalculator.Core", "IsoMetrix.StringCalculator\IsoMetrix.StringCalculator.Core\IsoMetrix.StringCalculator.Core.csproj", "{C8E3050C-7494-4A53-8E5E-7DE37C1E996E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "IsoMetrix.StringCalculator", "IsoMetrix.StringCalculator", "{62D51582-E68E-4C19-AA9F-7D93AB13C412}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IsoMetrix.StringCalculator.Tests", "IsoMetrix.StringCalculator\IsoMetrix.StringCalculator.Tests\IsoMetrix.StringCalculator.Tests.csproj", "{135876DA-7B8E-4E50-AC28-2AE7915A2B74}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "IsoMetrix.LinkedList", "IsoMetrix.LinkedList", "{FBAAFD8B-2AB8-448E-B0C0-C15707E3D80C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IsoMetrix.LinkedList.Tests", "IsoMetrix.LinkedList\IsoMetrix.LinkedList.Tests\IsoMetrix.LinkedList.Tests.csproj", "{1F4A1D24-3E91-4C57-A6C2-2E2B709A847E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C8E3050C-7494-4A53-8E5E-7DE37C1E996E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C8E3050C-7494-4A53-8E5E-7DE37C1E996E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C8E3050C-7494-4A53-8E5E-7DE37C1E996E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C8E3050C-7494-4A53-8E5E-7DE37C1E996E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{135876DA-7B8E-4E50-AC28-2AE7915A2B74}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{135876DA-7B8E-4E50-AC28-2AE7915A2B74}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{135876DA-7B8E-4E50-AC28-2AE7915A2B74}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{135876DA-7B8E-4E50-AC28-2AE7915A2B74}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1F4A1D24-3E91-4C57-A6C2-2E2B709A847E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1F4A1D24-3E91-4C57-A6C2-2E2B709A847E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1F4A1D24-3E91-4C57-A6C2-2E2B709A847E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1F4A1D24-3E91-4C57-A6C2-2E2B709A847E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C8E3050C-7494-4A53-8E5E-7DE37C1E996E} = {62D51582-E68E-4C19-AA9F-7D93AB13C412}
+		{135876DA-7B8E-4E50-AC28-2AE7915A2B74} = {62D51582-E68E-4C19-AA9F-7D93AB13C412}
+		{1F4A1D24-3E91-4C57-A6C2-2E2B709A847E} = {FBAAFD8B-2AB8-448E-B0C0-C15707E3D80C}
+	EndGlobalSection
+EndGlobal
