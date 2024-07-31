@@ -57,7 +57,7 @@ public static class StringCalculator
         var customDelimiterLength = customDelimiterEnd - CustomDelimiterStartMarker.Length;
 
         var customDelimiter = numbers.Substring(customDelimiterStart, customDelimiterLength);
-        var extractedNumbers = numbers.Substring(customDelimiterEnd);
+        var extractedNumbers = numbers.Substring(customDelimiterEnd + 1);
 
         return (customDelimiter, extractedNumbers);
     }
