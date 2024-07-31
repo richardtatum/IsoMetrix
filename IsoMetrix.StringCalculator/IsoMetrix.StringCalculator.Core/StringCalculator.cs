@@ -25,7 +25,6 @@ public class StringCalculator(IDelimiterHandler delimiterHandler, IEnumerable<IV
             .Select(int.Parse)
             .ToArray();
 
-        // TODO: A `-` delimiter would cause a lot of problems here!
         foreach (var validator in validationHandlers)
         {
             numberArray = validator.Validate(numberArray);
