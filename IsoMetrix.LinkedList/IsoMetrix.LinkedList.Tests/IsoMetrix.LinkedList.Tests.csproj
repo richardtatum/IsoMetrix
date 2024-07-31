@@ -22,4 +22,8 @@
         </PackageReference>
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\IsoMetrix.LinkedList.Core\IsoMetrix.LinkedList.Core.csproj" />
+    </ItemGroup>
+
 </Project>

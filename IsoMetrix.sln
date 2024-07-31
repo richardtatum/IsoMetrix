@@ -10,6 +10,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "IsoMetrix.LinkedList", "Iso
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IsoMetrix.LinkedList.Tests", "IsoMetrix.LinkedList\IsoMetrix.LinkedList.Tests\IsoMetrix.LinkedList.Tests.csproj", "{1F4A1D24-3E91-4C57-A6C2-2E2B709A847E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IsoMetrix.LinkedList.Core", "IsoMetrix.LinkedList\IsoMetrix.LinkedList.Core\IsoMetrix.LinkedList.Core.csproj", "{B4049255-FFD4-430D-B939-99935B4B2460}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -28,10 +30,15 @@ Global
 		{1F4A1D24-3E91-4C57-A6C2-2E2B709A847E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1F4A1D24-3E91-4C57-A6C2-2E2B709A847E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1F4A1D24-3E91-4C57-A6C2-2E2B709A847E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B4049255-FFD4-430D-B939-99935B4B2460}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B4049255-FFD4-430D-B939-99935B4B2460}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B4049255-FFD4-430D-B939-99935B4B2460}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B4049255-FFD4-430D-B939-99935B4B2460}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{C8E3050C-7494-4A53-8E5E-7DE37C1E996E} = {62D51582-E68E-4C19-AA9F-7D93AB13C412}
 		{135876DA-7B8E-4E50-AC28-2AE7915A2B74} = {62D51582-E68E-4C19-AA9F-7D93AB13C412}
 		{1F4A1D24-3E91-4C57-A6C2-2E2B709A847E} = {FBAAFD8B-2AB8-448E-B0C0-C15707E3D80C}
+		{B4049255-FFD4-430D-B939-99935B4B2460} = {FBAAFD8B-2AB8-448E-B0C0-C15707E3D80C}
 	EndGlobalSection
 EndGlobal
