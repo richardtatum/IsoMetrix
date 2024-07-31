@@ -6,8 +6,6 @@ public class LinkedListTests
 {
     private readonly CustomLinkedList<string> _linkedList;
     
-    // PrintList
-
     public LinkedListTests()
     {
         _linkedList = new CustomLinkedList<string>();
@@ -341,5 +339,4 @@ public class LinkedListTests
     {
         Assert.Throws<InvalidOperationException>(() => _linkedList.PrintList());
     }
-    
 }
