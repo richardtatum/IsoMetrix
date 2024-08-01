@@ -316,9 +316,9 @@ public class LinkedListTests
         _linkedList.InsertFirst(firstNode);
 
         var prints = new List<string>();
-        _linkedList.OnPrint += print =>
+        _linkedList.OnPrint += node =>
         {
-            prints.Add(print);
+            prints.Add(node.Data.ToString());
         };
         
         _linkedList.PrintList();

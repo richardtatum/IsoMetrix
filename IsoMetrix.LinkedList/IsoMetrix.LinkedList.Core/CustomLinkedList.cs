@@ -6,7 +6,7 @@ public class CustomLinkedList<T>
     public Node<T>? Last { get; private set; }
     public int Count { get; private set; }
 
-    public event Action<string>? OnPrint;
+    public event Action<Node<T>>? OnPrint;
 
     public void InsertFirst(Node<T> node)
     {
@@ -146,7 +146,7 @@ public class CustomLinkedList<T>
         var current = First;
         while (current is not null)
         {
-            OnPrint!.Invoke(current.Data?.ToString() ?? "No data");
+            OnPrint!.Invoke(current);
             current = current.Next;
         }
     }
@@ -158,7 +158,10 @@ public class CustomLinkedList<T>
             return;
         }
 
-        OnPrint += Console.WriteLine;
+        OnPrint += node =>
+        {
+            Console.WriteLine(node.Data?.ToString() ?? "No Data");
+        };
     }
 
     private void ValidateNode(Node<T> node)
